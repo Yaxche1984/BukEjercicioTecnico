@@ -1,15 +1,18 @@
 package demoblaze;
+
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class loginCorrecto {
+public class validacionContrasena {
 	public static WebDriver driver;
-	public static int tiempoespera = 30;
+	public static int tiempoespera = 5;
 	
 	@Before
 	public void setUp() {
@@ -27,18 +30,18 @@ public class loginCorrecto {
 		driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
 		driver.findElement(By.xpath("//*[@id=\"loginpassword\"]")).sendKeys("prueba021*");
 		driver.findElement(By.xpath("//*[@id=\"logInModal\"]/div/div/div[3]/button[2]")).click();
-	    try {
-			driver.findElement(By.xpath("//*[@id=\"logout2\"]")).click();
-		}
-		catch(org.openqa.selenium.StaleElementReferenceException ex)
-		{
-			driver.findElement(By.xpath("//*[@id=\"logout2\"]")).click();
-		}
-		
+		driver.findElement(By.xpath("//*[text()='Wrong password.']"));
+		driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
+        Alert alert = driver.switchTo().alert();
+        String print = alert.getText();
+        String esperado = "Wrong password." ;
+        Assert.assertEquals (esperado, print);
+        alert.accept();
 	 }
 	 @After
 	 public void close() {
 	 driver.close(); 
 	 }
+
 
 }

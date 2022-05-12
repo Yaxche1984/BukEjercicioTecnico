@@ -29,9 +29,9 @@ public class usuarioNuevo {
 		driver.findElement(By.id("signin2")).click();
 		driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
 		driver.findElement(By.id("sign-username")).clear();
-		driver.findElement(By.id("sign-username")).sendKeys("prueba0199");
+		driver.findElement(By.id("sign-username")).sendKeys("prueba001");
 		driver.findElement(By.id("sign-password")).clear();
-		driver.findElement(By.id("sign-password")).sendKeys("prueba99*");
+		driver.findElement(By.id("sign-password")).sendKeys("prueba001*");
 		driver.findElement(By.xpath("//*[@id=\"signInModal\"]/div/div/div[3]/button[2]")).click();
 		//Mensaje presentado en alerta
 		driver.findElement(By.xpath("//*[text()='Sign up successful.']"));
