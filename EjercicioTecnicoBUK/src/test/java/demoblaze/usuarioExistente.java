@@ -23,6 +23,8 @@ public class usuarioExistente {
 			driver.manage().window().maximize();
 			driver.get("https://www.demoblaze.com/index.html");
 	     }
+	   
+	   //Usuario
 			@Test
 			public void userExist() {
 				driver.findElement(By.id(l.registro("sign_in"))).click();

@@ -1,5 +1,6 @@
 package demoblaze;
 
+//centralización de localizadores
 public class localizadores{
 	
 	//Registro de usuario

@@ -23,6 +23,7 @@ public class validacionContrasena {
 		driver.get("https://www.demoblaze.com/index.html");
      }
 	
+	//validar contraseña
 	@Test
 	public void ingresoUsuario() {
 		driver.findElement(By.id(l.ingreso("login"))).click();

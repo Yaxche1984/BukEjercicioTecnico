@@ -26,6 +26,7 @@ public class agregarCarrito {
 		driver.get("https://www.demoblaze.com/index.html");
      }
 	
+	//agrega a carrito
 	@Test
 	public void addCart() {
 		driver.findElement(By.id(l.ingreso("login"))).click();

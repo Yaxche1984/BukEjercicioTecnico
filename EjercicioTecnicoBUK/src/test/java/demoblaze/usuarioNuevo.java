@@ -25,6 +25,7 @@ public class usuarioNuevo {
 		
     }
 	
+	//Usuario nuevo
 	@Test
 	public void registrocliente() {
 		driver.findElement(By.id(l.registro("sign_in"))).click();

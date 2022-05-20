@@ -20,6 +20,7 @@ public class loginCorrecto {
 		driver.get("https://www.demoblaze.com/index.html");
      }
 	
+	//Login 
 	@Test
 	public void ingresoUsuario() {
 		driver.findElement(By.id(l.ingreso("login"))).click();

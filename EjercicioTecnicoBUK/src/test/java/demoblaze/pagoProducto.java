@@ -26,6 +26,7 @@ public class pagoProducto {
 		
      }
 	
+	//añadir a carrito
 	@Test
 	public void addCart() {
 		driver.findElement(By.id(l.ingreso("login"))).click();
