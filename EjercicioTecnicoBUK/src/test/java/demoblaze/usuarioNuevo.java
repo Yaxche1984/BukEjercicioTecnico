@@ -14,6 +14,7 @@ public class usuarioNuevo {
 	public static WebDriver driver;
 	public static int tiempoespera = 10;
 	public static String msjeAlerta;
+	localizadores l = new localizadores();
  
 	@Before
 	public void setUp() {
@@ -26,19 +27,19 @@ public class usuarioNuevo {
 	
 	@Test
 	public void registrocliente() {
-		driver.findElement(By.id("signin2")).click();
+		driver.findElement(By.id(l.registro("sign_in"))).click();
 		driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
-		driver.findElement(By.id("sign-username")).clear();
-		driver.findElement(By.id("sign-username")).sendKeys("prueba001");
-		driver.findElement(By.id("sign-password")).clear();
-		driver.findElement(By.id("sign-password")).sendKeys("prueba001*");
-		driver.findElement(By.xpath("//*[@id=\"signInModal\"]/div/div/div[3]/button[2]")).click();
+		driver.findElement(By.id(l.registro("sign_user"))).clear();
+		driver.findElement(By.id(l.registro("sign_user"))).sendKeys("prueba000122");
+		driver.findElement(By.id(l.registro("sign_pass"))).clear();
+		driver.findElement(By.id(l.registro("sign_pass"))).sendKeys("prueba000122*");
+		driver.findElement(By.xpath(l.registro("sign_btn"))).click();
 		//Mensaje presentado en alerta
-		driver.findElement(By.xpath("//*[text()='Sign up successful.']"));
+		driver.findElement(By.xpath(l.mensaje("sign_msj")));
 		driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
         Alert alert = driver.switchTo().alert();
         String print = alert.getText();
-        String esperado = "Sign up successful." ;
+        String esperado = l.mensaje("sign_msj1") ;
         Assert.assertEquals (esperado, print);
         alert.accept();
 		//Alerta aceptar
@@ -50,6 +51,6 @@ public class usuarioNuevo {
 	 @After
 	 public void close() {
 	 driver.close();
-    }
+	}
 
 }

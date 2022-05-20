@@ -15,6 +15,7 @@ public class pagoProducto {
 	public static WebDriver driver;
 	public static int tiempoespera = 10;
 	public static String msjeAlerta;
+	localizadores l = new localizadores();
  
 	@Before
 	public void setUp() {
@@ -22,16 +23,17 @@ public class pagoProducto {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://www.demoblaze.com/index.html");
+		
      }
 	
 	@Test
 	public void addCart() {
-		driver.findElement(By.id("login2")).click();
+		driver.findElement(By.id(l.ingreso("login"))).click();
 		driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
-		driver.findElement(By.xpath("//*[@id=\"loginusername\"]")).sendKeys("prueba0111");
+		driver.findElement(By.xpath(l.ingreso("ing_usu"))).sendKeys("prueba0002");
 		driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
-		driver.findElement(By.xpath("//*[@id=\"loginpassword\"]")).sendKeys("prueba31*");
-		driver.findElement(By.xpath("//*[@id=\"logInModal\"]/div/div/div[3]/button[2]")).click();
+		driver.findElement(By.xpath(l.ingreso("ing_pass"))).sendKeys("prueba0002*");
+		driver.findElement(By.xpath(l.ingreso("ing_btn"))).click();
 		JavascriptExecutor scrollLaptops = (JavascriptExecutor)driver;
 		scrollLaptops.executeScript("window.scrollBy(0,250)", "");
 		try {
@@ -46,11 +48,11 @@ public class pagoProducto {
 		WebElement Laptop1 = driver.findElement(By.linkText("Sony vaio i5"));
 		Laptop1.click();
 		driver.findElement(By.xpath("//*[@id=\"tbodyid\"]/div[2]/div/a")).click();
-		driver.findElement(By.xpath("//*[text()='Product added.']"));
+		driver.findElement(By.xpath(l.mensaje("sign_msj6")));
 		//Alerta aceptar
 		Alert alert = driver.switchTo().alert();
 		alert.accept();	
-		WebElement cart = driver.findElement(By.linkText("Cart"));
+		WebElement cart = driver.findElement(By.linkText(l.carrito("cart")));
 		cart.click();
 		driver.findElement(By.xpath("//*[@id=\"tbodyid\"]/tr/td[2]"));
 		//Bot�n para Place Order
@@ -78,7 +80,7 @@ public class pagoProducto {
 	    	//Purchace
 	    	driver.findElement(By.xpath("//*[@id=\"orderModal\"]/div/div/div[3]/button[2]")).click();
 	    	driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
-	    	driver.findElement(By.xpath("//*[text()='Thank you for your purchase!']"));
+	    	driver.findElement(By.xpath(l.mensaje("sign_msj7")));
 	    	driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
 	    	driver.findElement(By.xpath("/html/body/div[10]/div[7]/div/button")).click();
 	    	driver.findElement(By.xpath("//*[@id=\"orderModal\"]/div/div/div[3]/button[1]")).click();

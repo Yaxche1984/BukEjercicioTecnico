@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class validacionContrasena {
 	public static WebDriver driver;
 	public static int tiempoespera = 5;
+	localizadores l = new localizadores();
 	
 	@Before
 	public void setUp() {
@@ -24,17 +25,17 @@ public class validacionContrasena {
 	
 	@Test
 	public void ingresoUsuario() {
-		driver.findElement(By.id("login2")).click();
+		driver.findElement(By.id(l.ingreso("login"))).click();
 		driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
-		driver.findElement(By.xpath("//*[@id=\"loginusername\"]")).sendKeys("prueba021");
+		driver.findElement(By.xpath(l.ingreso("ing_usu"))).sendKeys("prueba021");
 		driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
-		driver.findElement(By.xpath("//*[@id=\"loginpassword\"]")).sendKeys("prueba021*");
-		driver.findElement(By.xpath("//*[@id=\"logInModal\"]/div/div/div[3]/button[2]")).click();
-		driver.findElement(By.xpath("//*[text()='Wrong password.']"));
+		driver.findElement(By.xpath(l.ingreso("ing_pass"))).sendKeys("prueba02123*");
+		driver.findElement(By.xpath(l.ingreso("ing_btn"))).click();
+		driver.findElement(By.xpath(l.mensaje("sign_msj4")));
 		driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
         Alert alert = driver.switchTo().alert();
         String print = alert.getText();
-        String esperado = "Wrong password." ;
+        String esperado = l.mensaje("sign_msj5") ;
         Assert.assertEquals (esperado, print);
         alert.accept();
 	 }

@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class loginCorrecto {
 	public static WebDriver driver;
 	public static int tiempoespera = 30;
+	localizadores l = new localizadores();
 	
 	@Before
 	public void setUp() {
@@ -21,18 +22,18 @@ public class loginCorrecto {
 	
 	@Test
 	public void ingresoUsuario() {
-		driver.findElement(By.id("login2")).click();
+		driver.findElement(By.id(l.ingreso("login"))).click();
 		driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
-		driver.findElement(By.xpath("//*[@id=\"loginusername\"]")).sendKeys("prueba021");
+		driver.findElement(By.xpath(l.ingreso("ing_usu"))).sendKeys("prueba021");
 		driver.manage().timeouts().implicitlyWait(tiempoespera,TimeUnit.SECONDS) ;
-		driver.findElement(By.xpath("//*[@id=\"loginpassword\"]")).sendKeys("prueba021*");
-		driver.findElement(By.xpath("//*[@id=\"logInModal\"]/div/div/div[3]/button[2]")).click();
+		driver.findElement(By.xpath(l.ingreso("ing_pass"))).sendKeys("prueba021*");
+		driver.findElement(By.xpath(l.ingreso("ing_btn"))).click();
 	    try {
-			driver.findElement(By.xpath("//*[@id=\"logout2\"]")).click();
+			driver.findElement(By.xpath(l.ingreso("log_out"))).click();
 		}
 		catch(org.openqa.selenium.StaleElementReferenceException ex)
 		{
-			driver.findElement(By.xpath("//*[@id=\"logout2\"]")).click();
+			driver.findElement(By.xpath(l.ingreso("log_out"))).click();
 		}
 		
 	 }
